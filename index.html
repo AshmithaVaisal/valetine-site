@@ -622,20 +622,17 @@
         }
 
         window.onload = () => {
-            if (localStorage.getItem("isAccepted") === "true") {
-                window.location.href = "reveal.html";
-            } else if (localStorage.getItem("isLoggedIn") === "true") {
-                document.getElementById("landing").classList.remove("active");
-                document.getElementById("landing").style.display = "none";
-                const envelopeScreen = document.getElementById("envelopeScreen");
-                envelopeScreen.style.display = "flex";
-                envelopeScreen.classList.add("active");
-            } else {
-                // Focus input if we are on landing
-                if (document.getElementById("landing").classList.contains("active")) {
-                    setTimeout(() => code.focus(), 1000);
-                }
-            }
+            // Always start from Landing Page
+            localStorage.removeItem("isLoggedIn");
+            // Optional: decides if we want to clear 'isAccepted' too. 
+            // If we want a strict "fresh start", we clear it.
+            localStorage.removeItem("isAccepted");
+
+            // Focus input
+            setTimeout(() => {
+                const codeInput = document.getElementById("code");
+                if (codeInput) codeInput.focus();
+            }, 1000);
         };
 
         function checkCode() {
