@@ -130,12 +130,28 @@
 
         /* mobile scaling */
         @media(max-width:600px) {
+            body {
+                align-items: flex-end;
+                padding-bottom: 12vh;
+            }
+
+            .message {
+                padding: 0 20px;
+            }
+
             .message h1 {
-                font-size: 48px;
+                font-size: 36px;
+                margin-bottom: 8px;
+            }
+
+            /* Hide emojis on mobile */
+            .emoji {
+                display: none;
             }
 
             .message p {
-                font-size: 20px;
+                font-size: 16px;
+                line-height: 1.4;
             }
         }
     </style>
@@ -144,15 +160,15 @@
 <body>
 
     <div class="message">
-        <h1>Happy Valentine's Day Mon !❤️</h1>
-        <p> You are my everything and I Love You Mon 💌</p>
+        <h1>Happy Valentine's Day Mon ❤️</h1>
+        <p> You are my everything and I Love You Mon <span class="emoji">💌</span></p>
     </div>
 
-    <div class="reset-link" onclick="resetApp()">reset again</div>
+    <div class="reset-link" onclick="goBack()">go back</div>
 
     <script>
-        function resetApp() {
-            localStorage.clear();
+        function goBack() {
+            localStorage.removeItem("isAccepted");
             window.location.href = "index.html";
         }
 
